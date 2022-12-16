@@ -7,7 +7,7 @@ namespace EvanAlmighty
         private string _name;
         private string _type;
         private bool _isHabitable;
-        private uint _diameter;
+        private int _diameter;
         private long _distance;
         private bool _hasCivilization;
         private Civilization _civilization;
@@ -30,7 +30,7 @@ namespace EvanAlmighty
             set { _isHabitable = value; }
         }
 
-        public uint Diameter
+        public int Diameter
         {
             get { return _diameter; }
             set { _diameter = value; }
@@ -54,7 +54,7 @@ namespace EvanAlmighty
             set { _civilization = value; }
         }
 
-        public Planet(string name, string type, bool isHabitable, uint diameter, long distance, bool hasCivilization, Civilization civilization)
+        public Planet(string name, string type, bool isHabitable, int diameter, long distance, bool hasCivilization, Civilization civilization)
         {
             Name = name;
             Type = type;
@@ -64,5 +64,7 @@ namespace EvanAlmighty
             HasCivilization = hasCivilization;
             Civilization = civilization;
         }
+
+        public Planet() { }
     }
 }
