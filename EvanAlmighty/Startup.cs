@@ -26,6 +26,14 @@ namespace EvanAlmighty
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "_myAllowSpecificOrigins",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +47,8 @@ namespace EvanAlmighty
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("_myAllowSpecificOrigins");
 
             app.UseAuthorization();
 

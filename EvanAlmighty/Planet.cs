@@ -2,21 +2,12 @@
 
 namespace EvanAlmighty
 {
-    public class Planet
+    public class Planet : PlanetaryBody
     {
-        private string _name;
         private string _type;
         private bool _isHabitable;
-        private int _diameter;
-        private long _distance;
         private bool _hasCivilization;
         private Civilization _civilization;
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
 
         public string Type
         {
@@ -28,18 +19,6 @@ namespace EvanAlmighty
         {
             get { return _isHabitable; }
             set { _isHabitable = value; }
-        }
-
-        public int Diameter
-        {
-            get { return _diameter; }
-            set { _diameter = value; }
-        }
-
-        public long Distance
-        {
-            get { return _distance; }
-            set { _distance = value; }
         }
 
         public bool HasCivilization
