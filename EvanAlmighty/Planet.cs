@@ -8,6 +8,7 @@ namespace EvanAlmighty
         private bool _isHabitable;
         private bool _hasCivilization;
         private Civilization _civilization;
+        private Moon[] _moons;
 
         public string Type
         {
@@ -33,7 +34,13 @@ namespace EvanAlmighty
             set { _civilization = value; }
         }
 
-        public Planet(string name, string type, bool isHabitable, int diameter, long distance, bool hasCivilization, Civilization civilization)
+        public Moon[] Moons
+        {
+            get { return _moons; }
+            set { _moons = value; }
+        }
+
+        public Planet(string name, string type, bool isHabitable, int diameter, long distance, bool hasCivilization, Civilization civilization, Moon[] moons)
         {
             Name = name;
             Type = type;
@@ -42,6 +49,7 @@ namespace EvanAlmighty
             Distance = distance;
             HasCivilization = hasCivilization;
             Civilization = civilization;
+            Moons = moons;
         }
 
         public Planet() { }

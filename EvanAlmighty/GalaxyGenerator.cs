@@ -77,9 +77,29 @@ namespace EvanAlmighty
                     planets[i].HasCivilization = false;
                     planets[i].Civilization = null;
                 }
+
+                planets[i].Moons = GenerateMoons(planets[i].Name);
             }
 
             return planets;
+        }
+
+        private static Moon[] GenerateMoons(string parentPlanet)
+        {
+            Random rnd = new Random();
+
+            int moonNumber = rnd.Next(1, 3);
+            Moon[] moons = new Moon[moonNumber];
+
+            for (int i = 0; i < moonNumber; i++)
+            {
+                moons[i] = new Moon(GenerateName(),
+                                    2000,
+                                    rnd.Next(GalacticConstants.PlanetDistanceMin / 5, GalacticConstants.PlanetDistanceMax / 5),
+                                    parentPlanet);
+            }
+
+            return moons;
         }
 
         private static Civilization GenerateCivilization()
