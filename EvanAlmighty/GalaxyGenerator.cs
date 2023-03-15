@@ -44,6 +44,11 @@ namespace EvanAlmighty
             {
                 planets[i] = new Planet();
 
+                planets[i].X = 0;
+                planets[i].Y = 0;
+                planets[i].Theta = 0;
+                planets[i].RadiusFromStar = 100;
+
                 planets[i].Name = $"{starName} {i+1}";
                 planets[i].Distance = rnd.Next(GalacticConstants.PlanetDistanceMin, GalacticConstants.PlanetDistanceMax);
 
@@ -58,14 +63,11 @@ namespace EvanAlmighty
                     planets[i].Diameter = rnd.Next(GalacticConstants.RockDiameterMin, GalacticConstants.RockDiameterMax);
                 }
 
-                if (planets[i].Distance >= GalacticConstants.HabitableDistanceMin && planets[i].Distance <= GalacticConstants.HabitableDistanceMax)
-                {
-                    planets[i].IsHabitable = true;
-                }
-                else
-                {
-                    planets[i].IsHabitable = false;
-                }
+
+                planets[i].IsHabitable =
+                    planets[i].Distance >= GalacticConstants.HabitableDistanceMin &&
+                    planets[i].Distance <= GalacticConstants.HabitableDistanceMax;
+          
 
                 if (rnd.NextDouble() * GalacticConstants.GlobalCivChance < 1 && planets[i].IsHabitable == true)
                 {
@@ -79,6 +81,7 @@ namespace EvanAlmighty
                 }
 
                 planets[i].Moons = GenerateMoons(planets[i].Name);
+                planets[i].Color = "green";
             }
 
             return planets;
@@ -95,7 +98,10 @@ namespace EvanAlmighty
             {
                 moons[i] = new Moon(GenerateName(),
                                     2000,
-                                    rnd.Next(GalacticConstants.PlanetDistanceMin / 5, GalacticConstants.PlanetDistanceMax / 5),
+                                    rnd.Next(
+                                        GalacticConstants.PlanetDistanceMin / 5,
+                                        GalacticConstants.PlanetDistanceMax / 5
+                                    ),
                                     parentPlanet);
             }
 
@@ -109,17 +115,11 @@ namespace EvanAlmighty
             string techLevel;
 
             if (techCheck >= 66)
-            {
                 techLevel = "FTL";
-            }
             else if (techCheck <= 33)
-            {
                 techLevel = "primitive";
-            }
             else
-            {
                 techLevel = "pre-FTL";
-            }
 
             string name = GenerateName();
             string type = CivDetails.BodyType[rnd.Next(0, CivDetails.BodyType.Length)];
@@ -130,23 +130,15 @@ namespace EvanAlmighty
             {
                 case "aquatic":
                     if (rnd.Next(0, 2) == 0)
-                    {
                         bodyCovering = "rubbery skin";
-                    }
                     else
-                    {
                         bodyCovering = "scales";
-                    }
                     break;
                 case "terrestrial":
                     if (rnd.Next(0, 2) == 0)
-                    {
                         bodyCovering = "skin";
-                    }
                     else
-                    {
                         bodyCovering = "fur";
-                    }
                     break;
                 case "subterranean":
                     bodyCovering = "skin";
@@ -190,7 +182,6 @@ namespace EvanAlmighty
             }
 
             string finalLowercaseName = string.Join("", nameArray);
-
             string finalName = char.ToUpper(finalLowercaseName[0]) + finalLowercaseName.Substring(1);
 
             return finalName;
