@@ -11,9 +11,7 @@ namespace EvanAlmighty
             Star[] stars = new Star[starNumber];
 
             for (int i = 0; i < starNumber; i++)
-            {
                 stars[i] = GenerateStar();
-            }
 
             Galaxy galaxy = new Galaxy(stars);
 
@@ -23,7 +21,6 @@ namespace EvanAlmighty
         private static Star GenerateStar()
         {
             Random rnd = new Random();
-
             string name = GenerateName();
             long diameter = rnd.Next(GalacticConstants.StellarDiameterMin, GalacticConstants.StellarDiameterMax) * 1000;
             int x = rnd.Next(0, GalacticConstants.Xmax);
@@ -95,15 +92,11 @@ namespace EvanAlmighty
             Moon[] moons = new Moon[moonNumber];
 
             for (int i = 0; i < moonNumber; i++)
-            {
-                moons[i] = new Moon(GenerateName(),
-                                    2000,
+                moons[i] = new Moon(GenerateName(), 2000,
                                     rnd.Next(
                                         GalacticConstants.PlanetDistanceMin / 5,
                                         GalacticConstants.PlanetDistanceMax / 5
-                                    ),
-                                    parentPlanet);
-            }
+                                    ), parentPlanet);
 
             return moons;
         }
